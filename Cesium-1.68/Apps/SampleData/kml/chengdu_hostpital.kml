@@ -1,0 +1,734 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
+<Document>
+<Style id="169715647">
+  <IconStyle>
+    <scale>1</scale>
+    <Icon>
+      <href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+<Style id="342661806">
+  <IconStyle>
+    <scale>1</scale>
+    <Icon>
+      <href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+<Style id="415906897">
+  <IconStyle>
+    <scale>1</scale>
+    <Icon>
+      <href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+<Style id="533862707">
+  <IconStyle>
+    <scale>1</scale>
+    <Icon>
+      <href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+<Style id="553296195">
+  <IconStyle>
+    <scale>1</scale>
+    <Icon>
+      <href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+<Style id="580174824">
+  <IconStyle>
+    <scale>1</scale>
+    <Icon>
+      <href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+<Style id="730701764">
+  <IconStyle>
+    <scale>1</scale>
+    <Icon>
+      <href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+<Style id="841117893">
+  <IconStyle>
+    <scale>1</scale>
+    <Icon>
+      <href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+<Style id="864680740">
+  <IconStyle>
+    <scale>1</scale>
+    <Icon>
+      <href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+<Style id="1103022578">
+  <IconStyle>
+    <scale>1</scale>
+    <Icon>
+      <href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+<Style id="1114399243">
+  <IconStyle>
+    <scale>1</scale>
+    <Icon>
+      <href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+<Style id="1125744920">
+  <IconStyle>
+    <scale>1</scale>
+    <Icon>
+      <href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+<Style id="1259347255">
+  <IconStyle>
+    <scale>1</scale>
+    <Icon>
+      <href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+<Style id="1283824147">
+  <IconStyle>
+    <scale>1</scale>
+    <Icon>
+      <href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+<Style id="1363154230">
+  <IconStyle>
+    <scale>1</scale>
+    <Icon>
+      <href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+<Style id="1378077281">
+  <IconStyle>
+    <scale>1</scale>
+    <Icon>
+      <href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+<Style id="1478038715">
+  <IconStyle>
+    <scale>1</scale>
+    <Icon>
+      <href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+<Style id="1623759106">
+  <IconStyle>
+    <scale>1</scale>
+    <Icon>
+      <href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+<Style id="1800443702">
+  <IconStyle>
+    <scale>1</scale>
+    <Icon>
+      <href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+<Style id="1800521443">
+  <IconStyle>
+    <scale>1</scale>
+    <Icon>
+      <href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+<Style id="1803386893">
+  <IconStyle>
+    <scale>1</scale>
+    <Icon>
+      <href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+<Style id="1862055530">
+  <IconStyle>
+    <scale>1</scale>
+    <Icon>
+      <href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+<Style id="1882377950">
+  <IconStyle>
+    <scale>1</scale>
+    <Icon>
+      <href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+<Style id="2164063820">
+  <IconStyle>
+    <scale>1</scale>
+    <Icon>
+      <href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+<Style id="2387601666">
+  <IconStyle>
+    <scale>1</scale>
+    <Icon>
+      <href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+<Style id="2494948296">
+  <IconStyle>
+    <scale>1</scale>
+    <Icon>
+      <href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+<Style id="2803424808">
+  <IconStyle>
+    <scale>1</scale>
+    <Icon>
+      <href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+<Style id="2993645717">
+  <IconStyle>
+    <scale>1</scale>
+    <Icon>
+      <href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+<Style id="3014063114">
+  <IconStyle>
+    <scale>1</scale>
+    <Icon>
+      <href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+<Style id="3277134937">
+  <IconStyle>
+    <scale>1</scale>
+    <Icon>
+      <href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+<Style id="3279992866">
+  <IconStyle>
+    <scale>1</scale>
+    <Icon>
+      <href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+<Style id="3346104254">
+  <IconStyle>
+    <scale>1</scale>
+    <Icon>
+      <href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+<Style id="3441373296">
+  <IconStyle>
+    <scale>1</scale>
+    <Icon>
+      <href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+<Style id="3591294185">
+  <IconStyle>
+    <scale>1</scale>
+    <Icon>
+      <href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+<Style id="3620014652">
+  <IconStyle>
+    <scale>1</scale>
+    <Icon>
+      <href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+<Style id="3727998172">
+  <IconStyle>
+    <scale>1</scale>
+    <Icon>
+      <href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+<Style id="3936172935">
+  <IconStyle>
+    <scale>1</scale>
+    <Icon>
+      <href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+<Style id="4077579875">
+  <IconStyle>
+    <scale>1</scale>
+    <Icon>
+      <href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+<Style id="4195673486">
+  <IconStyle>
+    <scale>1</scale>
+    <Icon>
+      <href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+<Style id="4228875985">
+  <IconStyle>
+    <scale>1</scale>
+    <Icon>
+      <href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+<Folder>
+<name>POI搜索结果</name>
+<Folder>
+<name>医疗</name>
+</Folder>
+<Folder>
+<name>医疗</name>
+<Placemark>
+  <name>成都市青羊区第九人民医院</name>
+  <description/>
+  <styleUrl>#1800521443</styleUrl>
+  <Point>
+    <coordinates>
+      103.980331175478,30.6721401045145,0
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>四川省妇幼保健院</name>
+  <description/>
+  <styleUrl>#1800443702</styleUrl>
+  <Point>
+    <coordinates>
+      103.992811185077,30.653830618605,0
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>全亿健康</name>
+  <description/>
+  <styleUrl>#2387601666</styleUrl>
+  <Point>
+    <coordinates>
+      103.989841818959,30.7168205617948,0
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>中海国际社区卫生服务站</name>
+  <description/>
+  <styleUrl>#415906897</styleUrl>
+  <Point>
+    <coordinates>
+      103.969327283676,30.7231565510742,0
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>成都市金牛区金泉金科社区卫生服务站</name>
+  <description/>
+  <styleUrl>#1882377950</styleUrl>
+  <Point>
+    <coordinates>
+      103.985778921201,30.7124143234388,0
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>四川省妇幼保健院-门诊大楼</name>
+  <description/>
+  <styleUrl>#1103022578</styleUrl>
+  <Point>
+    <coordinates>
+      103.993349958436,30.6536574297421,0
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>慈铭体检中心</name>
+  <description/>
+  <styleUrl>#580174824</styleUrl>
+  <Point>
+    <coordinates>
+      104.006746842921,30.6823246731018,0
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>成都满地可医院</name>
+  <description/>
+  <styleUrl>#1803386893</styleUrl>
+  <Point>
+    <coordinates>
+      104.001904573182,30.6706028440969,0
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>成都金沙医院</name>
+  <description/>
+  <styleUrl>#3346104254</styleUrl>
+  <Point>
+    <coordinates>
+      104.007225427045,30.6756999584568,0
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>百安中医</name>
+  <description/>
+  <styleUrl>#1283824147</styleUrl>
+  <Point>
+    <coordinates>
+      104.002422672811,30.6766248832299,0
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>四川省人民医院第五门诊部</name>
+  <description/>
+  <styleUrl>#4077579875</styleUrl>
+  <Point>
+    <coordinates>
+      103.98796101004,30.6685883777545,0
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>成都市德康医院</name>
+  <description/>
+  <styleUrl>#841117893</styleUrl>
+  <Point>
+    <coordinates>
+      103.909062039616,30.6772355499393,0
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>成都武侯西南医院</name>
+  <description/>
+  <styleUrl>#3727998172</styleUrl>
+  <Point>
+    <coordinates>
+      103.969300079043,30.6506474849348,0
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>成都星尚美医学美容医院</name>
+  <description/>
+  <styleUrl>#2993645717</styleUrl>
+  <Point>
+    <coordinates>
+      104.007503484284,30.637007114448,0
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>秉正堂中医门诊部(西村大院店)</name>
+  <description/>
+  <styleUrl>#533862707</styleUrl>
+  <Point>
+    <coordinates>
+      103.999079462014,30.6731649241885,0
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>成都西华医院</name>
+  <description/>
+  <styleUrl>#864680740</styleUrl>
+  <Point>
+    <coordinates>
+      104.007941620199,30.7039509669082,0
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>成都西区安琪儿妇产医院-预防接种门诊</name>
+  <description/>
+  <styleUrl>#1478038715</styleUrl>
+  <Point>
+    <coordinates>
+      104.006942900398,30.6992552422755,0
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>杏仁门诊</name>
+  <description/>
+  <styleUrl>#2164063820</styleUrl>
+  <Point>
+    <coordinates>
+      103.957015166728,30.6781469982275,0
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>成都青羊承志中医诊所有限责任公司</name>
+  <description/>
+  <styleUrl>#169715647</styleUrl>
+  <Point>
+    <coordinates>
+      103.994423610629,30.6803031097609,0
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>唯品口腔</name>
+  <description/>
+  <styleUrl>#3620014652</styleUrl>
+  <Point>
+    <coordinates>
+      104.002305193378,30.6828234206632,0
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>灵兰医舍中医诊所</name>
+  <description/>
+  <styleUrl>#1363154230</styleUrl>
+  <Point>
+    <coordinates>
+      104.097530865866,30.6884645122513,0
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>成都中医药大学附属医院</name>
+  <description/>
+  <styleUrl>#3014063114</styleUrl>
+  <Point>
+    <coordinates>
+      104.039617853985,30.6696635399639,0
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>中国人民解放军成都军区八一骨科医院</name>
+  <description/>
+  <styleUrl>#1114399243</styleUrl>
+  <Point>
+    <coordinates>
+      104.066720337473,30.6811065795606,0
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>成都市第三医院-体检部</name>
+  <description/>
+  <styleUrl>#4195673486</styleUrl>
+  <Point>
+    <coordinates>
+      104.063644227705,30.6738589626558,0
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>成都爱尔眼科医院</name>
+  <description/>
+  <styleUrl>#1125744920</styleUrl>
+  <Point>
+    <coordinates>
+      104.039326657232,30.6532904838337,0
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>电子科技大学医院</name>
+  <description/>
+  <styleUrl>#3441373296</styleUrl>
+  <Point>
+    <coordinates>
+      104.101155047968,30.6767635632746,0
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>成都市第三人民医院妇产儿科</name>
+  <description/>
+  <styleUrl>#2803424808</styleUrl>
+  <Point>
+    <coordinates>
+      104.063521102747,30.6739158719463,0
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>416医院-门诊部</name>
+  <description/>
+  <styleUrl>#3591294185</styleUrl>
+  <Point>
+    <coordinates>
+      104.091501098148,30.6914144552179,0
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>成都天大不孕不育医院</name>
+  <description/>
+  <styleUrl>#3936172935</styleUrl>
+  <Point>
+    <coordinates>
+      104.074525603203,30.6526373066417,0
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>跳蹬河社区卫生服务中心</name>
+  <description/>
+  <styleUrl>#4228875985</styleUrl>
+  <Point>
+    <coordinates>
+      104.125327932057,30.6612357320917,0
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>国光医院</name>
+  <description/>
+  <styleUrl>#730701764</styleUrl>
+  <Point>
+    <coordinates>
+      104.099061491494,30.6712474173278,0
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>成都普瑞眼科医院</name>
+  <description/>
+  <styleUrl>#3277134937</styleUrl>
+  <Point>
+    <coordinates>
+      104.085676829496,30.6827765319359,0
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>府青路社区卫生服务中心</name>
+  <description/>
+  <styleUrl>#1259347255</styleUrl>
+  <Point>
+    <coordinates>
+      104.092097719109,30.6822046704473,0
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>成都正好医学美容门诊部</name>
+  <description/>
+  <styleUrl>#553296195</styleUrl>
+  <Point>
+    <coordinates>
+      104.083820071148,30.673371101849,0
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>桃蹊路社区卫生服务中心</name>
+  <description/>
+  <styleUrl>#1623759106</styleUrl>
+  <Point>
+    <coordinates>
+      104.10363840872,30.6859278479103,0
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>成都美绽美整形美容医院</name>
+  <description/>
+  <styleUrl>#1378077281</styleUrl>
+  <Point>
+    <coordinates>
+      104.115216441637,30.6656258595693,0
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>成都八里医院</name>
+  <description/>
+  <styleUrl>#1862055530</styleUrl>
+  <Point>
+    <coordinates>
+      104.112959575948,30.6850673181397,0
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>成都军区总医院健康体检中心</name>
+  <description/>
+  <styleUrl>#3279992866</styleUrl>
+  <Point>
+    <coordinates>
+      104.08683504503,30.6713020120432,0
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>华蜀眼科</name>
+  <description/>
+  <styleUrl>#342661806</styleUrl>
+  <Point>
+    <coordinates>
+      104.119145450374,30.6821671656366,0
+    </coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>华众口腔</name>
+  <description/>
+  <styleUrl>#2494948296</styleUrl>
+  <Point>
+    <coordinates>
+      104.120888175263,30.674795484936,0
+    </coordinates>
+  </Point>
+</Placemark>
+</Folder>
+</Folder>
+</Document>
+</kml>
