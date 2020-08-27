@@ -31,7 +31,8 @@
   <script>
     Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI4ZmJiMTQzMC0xYjFlLTRlZDktYjI5ZS1mOGIxMzY2ZDQ1NTciLCJpZCI6ODYwOCwic2NvcGVzIjpbImFzciIsImdjIl0sImlhdCI6MTU1MjM3OTcyN30.MSLoEjzlm83XTm1qRlt521SlgoU2jsthi566S6-9m_w';
     //加载天地图
-    var viewer = new Cesium.Viewer("cesiumContainer", {
+    var viewer = new Cesium.Viewer("cesiumContainer", 
+    {
       // animation: false,  //是否显示动画控件
       baseLayerPicker: true, //是否显示图层选择控件
       geocoder: true, //是否显示地名查找控件
@@ -39,14 +40,14 @@
       sceneModePicker: true, //是否显示投影方式控件
       navigationHelpButton: false, //是否显示帮助信息控件
       infoBox: true,  //是否显示点击要素之后显示的信息
-      imageryProvider: new Cesium.WebMapTileServiceImageryProvider({
-        url: "http://t0.tianditu.com/img_w/wmts?service=wmts&request=GetTile&version=1.0.0&LAYER=img&tileMatrixSet=w&TileMatrix={TileMatrix}&TileRow={TileRow}&TileCol={TileCol}&style=default&format=tiles&tk=ebf64362215c081f8317203220f133eb",
-        layer: "tdtBasicLayer",
-        style: "default",
-        format: "image/jpeg",
-        tileMatrixSetID: "GoogleMapsCompatible",
-        show: false
-      })
+      // imageryProvider: new Cesium.WebMapTileServiceImageryProvider({
+      //   url: "http://t0.tianditu.com/img_w/wmts?service=wmts&request=GetTile&version=1.0.0&LAYER=img&tileMatrixSet=w&TileMatrix={TileMatrix}&TileRow={TileRow}&TileCol={TileCol}&style=default&format=tiles&tk=ebf64362215c081f8317203220f133eb",
+      //   layer: "tdtBasicLayer",
+      //   style: "default",
+      //   format: "image/jpeg",
+      //   tileMatrixSetID: "GoogleMapsCompatible",
+      //   show: false
+      // })
     }
     );
     // 修改系统时间为本地时间
@@ -108,11 +109,11 @@
         const entity = geocacheEntities[i];
         // if (Cesium.defined(entity.billboard)) {
         // Adjust the vertical origin so pins sit on terrain
-        entity.billboard.verticalOrigin = Cesium.VerticalOrigin.BOTTOM;
-        // Disable the labels to reduce clutter
-        entity.label = undefined;
-        // Add distance display condition
-        entity.billboard.distanceDisplayCondition = new Cesium.DistanceDisplayCondition(10.0, 2000.0);
+        // entity.billboard.verticalOrigin = Cesium.VerticalOrigin.BOTTOM;
+        // // Disable the labels to reduce clutter
+        // entity.label = undefined;
+        // // Add distance display condition
+        // entity.billboard.distanceDisplayCondition = new Cesium.DistanceDisplayCondition(10.0, 2000.0);
         // }
 
         // 获取经纬度,并放入infobox
@@ -147,6 +148,33 @@
         var entity = neighborhoodEntities[i];
 
         entity.name = entity.properties.name;
+
+        // 给实体添加随机颜色
+        entity.polygon.material = Cesium.Color.fromRandom({
+          red: 0.1,
+          maximumGreen: 0.5,
+          minimumBlue: 0.5,
+          alpha: 0.6
+        });
+
+        // Tells the polygon to color the terrain. ClassificationType.CESIUM_3D_TILE will color the 3D tileset, and ClassificationType.BOTH will color both the 3d tiles and terrain (BOTH is the default)
+        entity.polygon.classificationType = Cesium.ClassificationType.TERRAIN;
+
+
+        var polyPositions = entity.polygon.hierarchy.getValue(Cesium.JulianDate.now()).positions;
+        var polyCenter = Cesium.BoundingSphere.fromPoints(polyPositions).center;
+        polyCenter = Cesium.Ellipsoid.WGS84.scaleToGeodeticSurface(polyCenter);
+        entity.position = polyCenter;
+        // Generate labels
+        entity.label = {
+          text: 'entity.name',
+          showBackground: true,
+          scale: 0.6,
+          horizontalOrigin: Cesium.HorizontalOrigin.CENTER,
+          verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
+          distanceDisplayCondition: new Cesium.DistanceDisplayCondition(10.0, 8000.0),
+          disableDepthTestDistance: 100.0
+        };
       }
     })
   </script>

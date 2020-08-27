@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Use correct character set. -->
+  <meta charset="utf-8">
+  <!-- Tell IE to use the latest, best version. -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Make the application on mobile take up the full browser screen and disable user scaling. -->
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <title>3D Tiles</title>
+  <script src="../Build/Cesium/Cesium.js"></script>
+  <style>
+    @import url(../Build/Cesium/Widgets/widgets.css);
+
+    html,
+    body,
+    #cesiumContainer {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="cesiumContainer"></div>
+  <script>
+    Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI4ZmJiMTQzMC0xYjFlLTRlZDktYjI5ZS1mOGIxMzY2ZDQ1NTciLCJpZCI6ODYwOCwic2NvcGVzIjpbImFzciIsImdjIl0sImlhdCI6MTU1MjM3OTcyN30.MSLoEjzlm83XTm1qRlt521SlgoU2jsthi566S6-9m_w';
+    //加载天地图
+    var viewer = new Cesium.Viewer("cesiumContainer",
+      {
+        // animation: false,  //是否显示动画控件
+        baseLayerPicker: true, //是否显示图层选择控件
+        geocoder: true, //是否显示地名查找控件
+        // timeline: false, //是否显示时间线控件
+        sceneModePicker: true, //是否显示投影方式控件
+        navigationHelpButton: false, //是否显示帮助信息控件
+        infoBox: true,  //是否显示点击要素之后显示的信息
+        // imageryProvider: new Cesium.WebMapTileServiceImageryProvider({
+        //   url: "http://t0.tianditu.com/img_w/wmts?service=wmts&request=GetTile&version=1.0.0&LAYER=img&tileMatrixSet=w&TileMatrix={TileMatrix}&TileRow={TileRow}&TileCol={TileCol}&style=default&format=tiles&tk=ebf64362215c081f8317203220f133eb",
+        //   layer: "tdtBasicLayer",
+        //   style: "default",
+        //   format: "image/jpeg",
+        //   tileMatrixSetID: "GoogleMapsCompatible",
+        //   show: false
+        // })
+      }
+    );
+    // 修改系统时间为本地时间
+    var d = new Date();
+    var hour = 0 - d.getTimezoneOffset();
+    viewer.animation.viewModel.timeFormatter = function (date, viewModel) {
+      var dateZone8 = Cesium.JulianDate.addMinutes(date, hour, new Cesium.JulianDate());
+      var gregorianDate = Cesium.JulianDate.toGregorianDate(dateZone8);
+      var millisecond = Math.round(gregorianDate.millisecond);
+      if (Math.abs(viewModel._clockViewModel.multiplier) < 1) {
+        return Cesium.sprintf("%02d:%02d:%02d.%03d;", gregorianDate.hour, gregorianDate.minute, gregorianDate.second);
+      }
+      return Cesium.sprintf("%02d:%02d:%02d GMT+8", gregorianDate.hour, gregorianDate.minute, gregorianDate.second);
+    };
+
+    // 修改时间轴随时间变化动态更新
+
+    var clock = new Cesium.Clock({
+      startTime: Cesium.JulianDate.fromIso8601("2013-12-25"),
+      currentTime: Cesium.JulianDate.fromIso8601("2013-12-25"),
+      stopTime: Cesium.JulianDate.fromIso8601("2013-12-26"),
+      clockRange: Cesium.ClockRange.LOOP_STOP,
+      clockStep: Cesium.ClockStep.SYSTEM_CLOCK_MULTIPLIER
+    });
+    var startTime = clock.startTime;
+    var stopTime = clock.stopTime;
+
+    function tick() {
+      var currentTime = Cesium.JulianDate.clone(clock.currentTime);
+
+      if (Cesium.JulianDate.greaterThan(currentTime, stopTime)) {
+        startTime = Cesium.JulianDate.addDays(startTime, 1.0, startTime);
+        stopTime = Cesium.JulianDate.addDays(stopTime, 1.0, stopTime);
+        timeline.zoomTo(startTime, stopTime)
+      }
+      Cesium.requestAnimationFrame(tick);
+    }
+    Cesium.requestAnimationFrame(tick);
+
+    // 检查控件
+
+    var city = viewer.scene.primitives.add(new Cesium.Cesium3DTileset({ url: Cesium.IonResource.fromAssetId(3839) }));
+
+    var heightOffset = -32;
+    city.readyPromise.then(function (tileset) {
+      // Position tileset
+      var boundingSphere = tileset.boundingSphere;
+      var cartographic = Cesium.Cartographic.fromCartesian(boundingSphere.center);
+      var surface = Cesium.Cartesian3.fromRadians(cartographic.longitude, cartographic.latitude, 0.0);
+      var offset = Cesium.Cartesian3.fromRadians(cartographic.longitude, cartographic.latitude, heightOffset);
+      var translation = Cesium.Cartesian3.subtract(offset, surface, new Cesium.Cartesian3());
+      tileset.modelMatrix = Cesium.Matrix4.fromTranslation(translation);
+    });
+
+    var defaultStyle = new Cesium.Cesium3DTileStyle({
+      color: "color('white')",
+      show: true
+    });
+    city.style = defaultStyle;
+
+
+
+
+  </script>
+</body>
+
+</html>
