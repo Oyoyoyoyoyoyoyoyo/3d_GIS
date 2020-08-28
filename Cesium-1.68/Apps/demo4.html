@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Use correct character set. -->
+  <meta charset="utf-8">
+  <!-- Tell IE to use the latest, best version. -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Make the application on mobile take up the full browser screen and disable user scaling. -->
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <title>添加实体数据</title>
+  <script src="../Build/Cesium/Cesium.js"></script>
+  <style>
+    @import url(../Build/Cesium/Widgets/widgets.css);
+
+    html,
+    body,
+    #cesiumContainer {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="cesiumContainer"></div>
+  <script>
+    Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxMzgxMTNhZS1mNTI3LTQ5MzQtOGU3Ni01ZTNiYjQyMzBiZTYiLCJpZCI6MjU4NTcsImlhdCI6MTU5ODUyMzYzMX0.qiwWAtBYE8ofh4tXGC185ALDTEK0sQggiyeh1EfQY5c';
+    //加载天地图
+    var viewer = new Cesium.Viewer("cesiumContainer",
+      // {
+      //   terrainProvider: new Cesium.CesiumTerrainProvider({
+      //     url: Cesium.IonResource.fromAssetId(1),
+      //   }),
+      // }
+    );
+    // 修改系统时间为本地时间
+    var d = new Date();
+    var hour = 0 - d.getTimezoneOffset();
+    viewer.animation.viewModel.timeFormatter = function (date, viewModel) {
+      var dateZone8 = Cesium.JulianDate.addMinutes(date, hour, new Cesium.JulianDate());
+      var gregorianDate = Cesium.JulianDate.toGregorianDate(dateZone8);
+      var millisecond = Math.round(gregorianDate.millisecond);
+      if (Math.abs(viewModel._clockViewModel.multiplier) < 1) {
+        return Cesium.sprintf("%02d:%02d:%02d.%03d;", gregorianDate.hour, gregorianDate.minute, gregorianDate.second);
+      }
+      return Cesium.sprintf("%02d:%02d:%02d GMT+8", gregorianDate.hour, gregorianDate.minute, gregorianDate.second);
+    };
+
+    // 修改时间轴随时间变化动态更新
+
+    var clock = new Cesium.Clock({
+      clockRange: Cesium.ClockRange.LOOP_STOP,
+      clockStep: Cesium.ClockStep.SYSTEM_CLOCK_MULTIPLIER
+    });
+    var startTime = clock.startTime;
+    var stopTime = clock.stopTime;
+
+    function tick() {
+      var currentTime = Cesium.JulianDate.clone(clock.currentTime);
+      if (Cesium.JulianDate.greaterThan(currentTime, stopTime)) {
+        startTime = Cesium.JulianDate.addDays(startTime, 1.0, startTime);
+        stopTime = Cesium.JulianDate.addDays(stopTime, 1.0, stopTime);
+        timeline.zoomTo(startTime, stopTime)
+      }
+      Cesium.requestAnimationFrame(tick);
+    }
+    Cesium.requestAnimationFrame(tick);
+
+
+    // 添加怀俄明州数据
+
+    var wyoming = viewer.entities.add({
+      name: 'Wyoming',
+      polygon: {
+        hierarchy: Cesium.Cartesian3.fromDegreesArray([
+          -109.080842, 45.002073,
+          -105.91517, 45.002073,
+          -104.058488, 44.996596,
+          -104.053011, 43.002989,
+          -104.053011, 41.003906,
+          -105.728954, 40.998429,
+          -107.919731, 41.003906,
+          -109.04798, 40.998429,
+          -111.047063, 40.998429,
+          -111.047063, 42.000709,
+          -111.047063, 44.476286,
+          -111.05254, 45.002073
+        ]),
+        height: 0,
+        material: Cesium.Color.RED.withAlpha(0.5),
+        outline: true,
+        outlineColor: Cesium.Color.BLACK
+      }
+    })
+    wyoming.polygon.height = 200000;
+    wyoming.polygon.extrudedHeight = 250000;
+    viewer.zoomTo(wyoming)
+
+    // 添加椭圆数据
+    /*      var entity=viewer.entities.add({
+           position:Cesium.Cartesian3.fromDegrees(-103,40),
+           ellipse:{
+             semiMinorAxis:250000.0,
+             semiMajorAxis:400000.0,
+             material:Cesium.Color.BLUE.withAlpha(0.5)
+           }
+         })
+    
+        //  viewer.zoomTo(entity)
+         var ellipse=entity.ellipse;
+        //  修改材质为图片
+        ellipse.material = './SampleData/snowflake_particle.png';
+    
+        // 修图轮廓
+        ellipse.fill=false;
+        ellipse.outline=true;
+        ellipse.outlineColor=Cesium.Color.YELLOW; */
+
+    // 添加折线
+
+/*     var polylineEntities = viewer.entities.add({
+      polyline: {
+        positions: Cesium.Cartesian3.fromDegreesArray([
+          -77, 35, -77.1, 35
+        ]),
+        width: 5,
+        height: 200000,
+        extrudedHeight: 250000,
+        material: Cesium.Color.RED
+      }
+    })
+    viewer.zoomTo(viewer.entities);
+
+    var polyline = polylineEntities.polyline;
+
+    // polyline.material = new Cesium.PolylineOutlineMaterialProperty({
+    //   color: Cesium.Color.ORANGE,
+    //   outlineWidth: 3,
+    //   outlineColor: Cesium.Color.BLACK
+    // });
+
+    polyline.material = new Cesium.PolylineGlowMaterialProperty({
+      glowPower: 0.2,
+      color: Cesium.Color.BLUE
+    });
+    // polyline.height=200000;
+    // polyline.extrudedHeight=250000; */
+
+  </script>
+</body>
+
+</html>

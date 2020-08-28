@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Use correct character set. -->
+  <meta charset="utf-8">
+  <!-- Tell IE to use the latest, best version. -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Make the application on mobile take up the full browser screen and disable user scaling. -->
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <title>相机控制，实现键盘控制地球移动</title>
+  <script src="../Build/Cesium/Cesium.js"></script>
+  <style>
+    @import url(../Build/Cesium/Widgets/widgets.css);
+
+    html,
+    body,
+    #cesiumContainer {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="cesiumContainer"></div>
+  <script>
+    var viewer;
+    initCesium();
+
+    /**
+     * 
+     * 初始化Cesium
+     */
+    function initCesium() {
+      Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxMzgxMTNhZS1mNTI3LTQ5MzQtOGU3Ni01ZTNiYjQyMzBiZTYiLCJpZCI6MjU4NTcsImlhdCI6MTU5ODUyMzYzMX0.qiwWAtBYE8ofh4tXGC185ALDTEK0sQggiyeh1EfQY5c';
+      // 默认设置
+      viewer = new Cesium.Viewer("cesiumContainer", {
+        animation: false,
+        baseLayerPicker: false,
+        fullscreenButton: false,
+        timeline: false,
+        sceneModePicker: false,
+        navigationHelpButton: false
+      }
+      );
+
+      viewer._cesiumWidget._creditContainer.style.display = "none";//关闭版权
+    }
+
+
+    var scene = viewer.scene;
+    var canvas = viewer.canvas;
+    canvas.setAttribute('tabindex', '0');
+    canvas.onclick = function () {
+      canvas.focus();
+    }
+
+    var ellipsoid = viewer.scene.globe.ellipsoid;
+
+    // 禁用默认事件
+    scene.screenSpaceCameraController.enableRotate = false;
+    scene.screenSpaceCameraController.enableTranslate = false;
+    scene.screenSpaceCameraController.enableZoom = false;
+    scene.screenSpaceCameraController.enableTilt = false;
+    scene.screenSpaceCameraController.enableLook = false;
+
+    var startMousePosition;
+    var mousePosition;
+    var flags = {
+      looking: false,
+      moveForward: false,
+      moveBackward: false,
+      moveUp: false,
+      moveDown: false,
+      moveLeft: false,
+      moveRight: false
+    };
+
+    // 记录鼠标位置
+
+    var handler = new Cesium.ScreenSpaceEventHandler(canvas);
+    handler.setInputAction(function (movement) {
+      flags.looking = true;
+      mousePosition = startMousePosition = Cesium.Cartesian3.clone(movement.position);
+    }, Cesium.ScreenSpaceEventType.LEFT_DOWN);
+
+    handler.setInputAction(function (movement) {
+      mousePosition = movement.endPosition;
+    }, Cesium.ScreenSpaceEventType.MOUSE_MOVE)
+
+    handler.setInputAction(function (position) {
+      flags.looking = false;
+    }, Cesium.ScreenSpaceEventType.LEFT_UP);
+
+    // 方向键函数
+    function getFlagForKeyCode(keyCode) {
+      switch (keyCode) {
+        case 'W'.charCodeAt(0):
+          return 'moveForward';
+        case 'S'.charCodeAt(0):
+          return 'moveBackward';
+        case 'Q'.charCodeAt(0):
+          return 'moveUp';
+        case 'E'.charCodeAt(0):
+          return 'moveDown';
+        case 'D'.charCodeAt(0):
+          return 'moveRight';
+        case 'A'.charCodeAt(0):
+          return 'moveLeft';
+        default:
+          return undefined;
+      }
+    }
+
+    document.addEventListener('keydown', function (e) {
+      var flagName = getFlagForKeyCode(e.keyCode);
+      if (typeof flagName !== 'undefined') {
+        flags[flagName] = true;
+      }
+    }, false)
+
+    document.addEventListener('keyup', function (e) {
+      var flagName = getFlagForKeyCode(e.keyCode);
+      if (typeof flagName !== 'undefined') {
+        flags[flagName] = false;
+      }
+    }, false)
+
+
+    viewer.clock.onTick.addEventListener(function (clock) {
+      var camera = viewer.camera;
+
+
+      if (flags.looking) {
+        var width = canvas.clientWidth;
+        var height = canvas.clientHeight;
+
+        // Coordinate (0.0, 0.0) will be where the mouse was clicked.
+        var x = (mousePosition.x - startMousePosition.x) / width;
+        var y = -(mousePosition.y - startMousePosition.y) / height;
+
+        var lookFactor = 0.05;
+        camera.lookRight(x * lookFactor);
+        camera.lookUp(y * lookFactor);
+      }
+
+      var cameraHeight = ellipsoid.cartesianToCartographic(camera.position).height;
+      var moveRate = cameraHeight / 100.0;
+
+      if (flags.moveForward) {
+        camera.moveForward(moveRate);
+      }
+      if (flags.moveBackward) {
+        camera.moveBackward(moveRate);
+      }
+      if (flags.moveUp) {
+        camera.moveUp(moveRate);
+      }
+      if (flags.moveDown) {
+        camera.moveDown(moveRate);
+      }
+      if (flags.moveLeft) {
+        camera.moveLeft(moveRate);
+      }
+      if (flags.moveRight) {
+        camera.moveRight(moveRate);
+      }
+    });
+  </script>
+</body>
+
+</html>

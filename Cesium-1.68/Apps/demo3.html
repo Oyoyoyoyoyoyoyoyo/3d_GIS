@@ -29,27 +29,13 @@
 <body>
   <div id="cesiumContainer"></div>
   <script>
-    Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI4ZmJiMTQzMC0xYjFlLTRlZDktYjI5ZS1mOGIxMzY2ZDQ1NTciLCJpZCI6ODYwOCwic2NvcGVzIjpbImFzciIsImdjIl0sImlhdCI6MTU1MjM3OTcyN30.MSLoEjzlm83XTm1qRlt521SlgoU2jsthi566S6-9m_w';
+    Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxMzgxMTNhZS1mNTI3LTQ5MzQtOGU3Ni01ZTNiYjQyMzBiZTYiLCJpZCI6MjU4NTcsImlhdCI6MTU5ODUyMzYzMX0.qiwWAtBYE8ofh4tXGC185ALDTEK0sQggiyeh1EfQY5c';
     //加载天地图
-    var viewer = new Cesium.Viewer("cesiumContainer",
-      {
-        // animation: false,  //是否显示动画控件
-        baseLayerPicker: true, //是否显示图层选择控件
-        geocoder: true, //是否显示地名查找控件
-        // timeline: false, //是否显示时间线控件
-        sceneModePicker: true, //是否显示投影方式控件
-        navigationHelpButton: false, //是否显示帮助信息控件
-        infoBox: true,  //是否显示点击要素之后显示的信息
-        // imageryProvider: new Cesium.WebMapTileServiceImageryProvider({
-        //   url: "http://t0.tianditu.com/img_w/wmts?service=wmts&request=GetTile&version=1.0.0&LAYER=img&tileMatrixSet=w&TileMatrix={TileMatrix}&TileRow={TileRow}&TileCol={TileCol}&style=default&format=tiles&tk=ebf64362215c081f8317203220f133eb",
-        //   layer: "tdtBasicLayer",
-        //   style: "default",
-        //   format: "image/jpeg",
-        //   tileMatrixSetID: "GoogleMapsCompatible",
-        //   show: false
-        // })
-      }
-    );
+    var viewer = new Cesium.Viewer("cesiumContainer", {
+      terrainProvider: new Cesium.CesiumTerrainProvider({
+        url: Cesium.IonResource.fromAssetId(1),
+      }),
+    });
     // 修改系统时间为本地时间
     var d = new Date();
     var hour = 0 - d.getTimezoneOffset();
@@ -89,7 +75,7 @@
 
     // 检查控件
 
-    var city = viewer.scene.primitives.add(new Cesium.Cesium3DTileset({ url: Cesium.IonResource.fromAssetId(3839) }));
+    var city = viewer.scene.primitives.add(new Cesium.Cesium3DTileset({ url: Cesium.IonResource.fromAssetId(1) }));
 
     var heightOffset = -32;
     city.readyPromise.then(function (tileset) {
