@@ -31,7 +31,8 @@
   <script>
     var viewer;
     initCesium();
-    addLayer();
+    // addLayer();
+    addBankparkLayer();
     /**
      * 
      * 初始化Cesium
@@ -113,7 +114,27 @@
       var pitch = Cesium.Math.toRadians(-30);//pitch 向下30
       viewer.zoomTo(wyoming, new Cesium.HeadingPitchRange(heading, pitch));
     }
-
+    function addBankparkLayer() {
+      var citizensBankPark = viewer.entities.add({
+        position: Cesium.Cartesian3.fromDegrees(-75.166493, 39.9060534),
+        billboard: {
+          image: './SampleData/heading(yaw)rollpitch.png',
+          width: 64,
+          height: 64
+        },
+        label: {
+          text: 'Citizens Bank Park',
+          font: '14pt monospace',
+          style: Cesium.LabelStyle.FILL_AND_OUTLINE,
+          outlineWidth: 2,
+          verticalOrigin: Cesium.VerticalOrigin.TOP,
+          pixelOffset: new Cesium.Cartesian2(0, 32)
+        }
+      });
+      citizensBankPark.name=`体育馆`
+      citizensBankPark.description=`<p>这是体育馆的tip信息</p>`
+      viewer.zoomTo(viewer.entities);
+    }
   </script>
 </body>
 
