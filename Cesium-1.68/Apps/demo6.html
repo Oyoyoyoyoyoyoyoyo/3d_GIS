@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Use correct character set. -->
+  <meta charset="utf-8">
+  <!-- Tell IE to use the latest, best version. -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Make the application on mobile take up the full browser screen and disable user scaling. -->
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <title>相机控制，实现键盘控制地球移动</title>
+  <script src="../Build/Cesium/Cesium.js"></script>
+  <style>
+    @import url(../Build/Cesium/Widgets/widgets.css);
+
+    html,
+    body,
+    #cesiumContainer {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="cesiumContainer"></div>
+  <script>
+    var viewer;
+    initCesium();
+    addLayer();
+    /**
+     * 
+     * 初始化Cesium
+     */
+    function initCesium() {
+      Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxMzgxMTNhZS1mNTI3LTQ5MzQtOGU3Ni01ZTNiYjQyMzBiZTYiLCJpZCI6MjU4NTcsImlhdCI6MTU5ODUyMzYzMX0.qiwWAtBYE8ofh4tXGC185ALDTEK0sQggiyeh1EfQY5c';
+      // 默认设置
+      viewer = new Cesium.Viewer("cesiumContainer", {
+        animation: false,
+        baseLayerPicker: false,
+        fullscreenButton: false,
+        timeline: false,
+        sceneModePicker: false,
+        navigationHelpButton: false
+      }
+      );
+
+      viewer._cesiumWidget._creditContainer.style.display = "none";//关闭版权
+
+    }
+
+    function addLayer() {
+      // 添加怀俄明州数据
+      var wyoming = viewer.entities.add({
+        name: 'Wyoming',
+        polygon: {
+          hierarchy: Cesium.Cartesian3.fromDegreesArray([
+            -109.080842, 45.002073,
+            -105.91517, 45.002073,
+            -104.058488, 44.996596,
+            -104.053011, 43.002989,
+            -104.053011, 41.003906,
+            -105.728954, 40.998429,
+            -107.919731, 41.003906,
+            -109.04798, 40.998429,
+            -111.047063, 40.998429,
+            -111.047063, 42.000709,
+            -111.047063, 44.476286,
+            -111.05254, 45.002073
+          ]),
+          height: 0,
+          material: Cesium.Color.RED.withAlpha(0.5),
+          outline: true,
+          outlineColor: Cesium.Color.BLACK
+        }
+      })
+      wyoming.polygon.height = 200000;
+      wyoming.polygon.extrudedHeight = 250000;
+      // viewer.zoomTo(wyoming)
+
+      wyoming.description = '\
+<img\
+  width="50%"\
+  style="float:left; margin: 0 1em 1em 0;"\
+  src="//cesium.com/docs/tutorials/creating-entities/Flag_of_Wyoming.svg"/>\
+<p>\
+  Wyoming is a state in the mountain region of the Western \
+  United States.\
+</p>\
+<p style="background:red;">\
+  Wyoming is the 10th most extensive, but the least populous \
+  and the second least densely populated of the 50 United \
+  States. The western two thirds of the state is covered mostly \
+  with the mountain ranges and rangelands in the foothills of \
+  the eastern Rocky Mountains, while the eastern third of the \
+  state is high elevation prairie known as the High Plains. \
+  Cheyenne is the capital and the most populous city in Wyoming, \
+  with a population estimate of 63,624 in 2017.\
+</p>\
+<p>\
+  Source: \
+  <a style="color: WHITE"\
+    target="_blank"\
+    href="http://en.wikipedia.org/wiki/Wyoming">Wikpedia</a>\
+</p>';
+
+
+      var heading = Cesium.Math.toRadians(0);//heading 正北方向
+      var pitch = Cesium.Math.toRadians(-30);//pitch 向下30
+      viewer.zoomTo(wyoming, new Cesium.HeadingPitchRange(heading, pitch));
+    }
+
+  </script>
+</body>
+
+</html>
