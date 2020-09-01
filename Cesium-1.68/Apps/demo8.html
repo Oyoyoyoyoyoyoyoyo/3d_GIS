@@ -9,7 +9,7 @@
   <!-- Make the application on mobile take up the full browser screen and disable user scaling. -->
   <meta name="viewport"
     content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-  <title>地形图层</title>
+  <title>四川地图添加标注和立体显示</title>
   <script src="../Build/Cesium/Cesium.js"></script>
   <style>
     @import url(../Build/Cesium/Widgets/widgets.css);
@@ -31,7 +31,7 @@
   <script>
     var viewer;
     initCesium();
-    // add3dModel()
+    addModel()
     /**
      * 
      * 初始化Cesium
@@ -46,10 +46,10 @@
         timeline: false,
         sceneModePicker: false,
         navigationHelpButton: false,
-        terrainProvider: Cesium.createWorldTerrain({
-          requestVertexNormals: true,
-          requestWaterMask:true
-        })
+        // terrainProvider: Cesium.createWorldTerrain({
+        //   requestVertexNormals: true,
+        //   requestWaterMask: true
+        // })
       }
       );
       viewer.scene.globe.enableLighting = true;//根据时间光照变化
@@ -57,22 +57,70 @@
 
     }
 
-    function add3dModel() {
-      var position = Cesium.Cartesian3.fromDegrees(-123, 44);
-      var heading = Cesium.Math.toRadians(45);
-      var pitch = Cesium.Math.toRadians(0);
-      var roll = Cesium.Math.toRadians(0);
-      var orientation = Cesium.Transforms.headingPitchRollQuaternion(position, new Cesium.HeadingPitchRoll(heading, pitch, roll));
-      var entity = viewer.entities.add({
-        position: position,
-        orientation: orientation,
-        name: '装甲车',
-        model: {
-          uri: './SampleData/models/GroundVehicle/GroundVehicle.glb'
+    function addModel() {
+      const geojsonOptions = {
+        clampToGround: true
+      };
+      const geojsonPromise = Cesium.GeoJsonDataSource.load('./SampleData/510000.geojson', geojsonOptions);
+      let neighborhoods;
+      geojsonPromise.then(function (data) {
+        viewer.dataSources.add(data);
+
+        neighborhoods = data.entities;
+
+        // Get the array of entities
+        var neighborhoodEntities = data.entities.values;
+        for (var i = 0; i < neighborhoodEntities.length; i++) {
+          var entity = neighborhoodEntities[i];
+
+          entity.name = entity.properties.name;
+
+          // // 给实体添加随机颜色
+          // entity.polygon.material = Cesium.Color.fromRandom({
+          //   red: 0.1,
+          //   maximumGreen: 0.5,
+          //   minimumBlue: 0.5,
+          //   alpha: 0.6
+          // });
+
+          // 分段渲染
+
+          var code = entity.properties.code;
+          var color = null;
+          if (code < 510500) {
+            color = Cesium.Color.fromCssColorString("#fff2d3").withAlpha(1);
+          } else if (code >= 510500 && code < 511000) {
+            color = Cesium.Color.fromCssColorString("#fed976").withAlpha(1);
+          } else if (code >= 511000) {
+            color = Cesium.Color.fromCssColorString("#cb2f11").withAlpha(1);
+          }
+          entity.polygon.material = color;
+          entity.polygon.outline = false;
+          // 提升高度
+          entity.polygon.extrudedHeight=entity.properties.code/5;
+          // Tells the polygon to color the terrain. ClassificationType.CESIUM_3D_TILE will color the 3D tileset, and ClassificationType.BOTH will color both the 3d tiles and terrain (BOTH is the default)
+          // entity.polygon.classificationType = Cesium.ClassificationType.TERRAIN;
+
+
+          var polyPositions = entity.polygon.hierarchy.getValue(Cesium.JulianDate.now()).positions;
+          var polyCenter = Cesium.BoundingSphere.fromPoints(polyPositions).center;
+          polyCenter = Cesium.Ellipsoid.WGS84.scaleToGeodeticSurface(polyCenter);
+          // 添加标签
+          viewer.entities.add({
+            position: polyCenter,
+            label: {
+              font: '24px sans-serif',
+              text: entity.properties.name+'城市代码：'+code,
+              showBackground: true,
+              scale: 0.6,
+              horizontalOrigin: Cesium.HorizontalOrigin.CENTER,
+              verticalOrigin: Cesium.VerticalOrigin.BOTTOM
+            }
+          })
+
+          viewer.zoomTo(viewer.entities)
         }
       })
-
-      viewer.trackedEntity = entity;
 
     }
 
