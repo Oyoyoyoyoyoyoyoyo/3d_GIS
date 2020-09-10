@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Use correct character set. -->
+  <meta charset="utf-8">
+  <!-- Tell IE to use the latest, best version. -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Make the application on mobile take up the full browser screen and disable user scaling. -->
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <title>添加geoserver wmts瓦片图层</title>
+  <script src="../Build/Cesium/Cesium.js"></script>
+  <style>
+    @import url(../Build/Cesium/Widgets/widgets.css);
+
+    html,
+    body,
+    #cesiumContainer {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="cesiumContainer"></div>
+  <script>
+    var viewer;
+    initCesium();
+    addModel()
+    /**
+     * 
+     * 初始化Cesium
+     */
+    function initCesium() {
+      Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxMzgxMTNhZS1mNTI3LTQ5MzQtOGU3Ni01ZTNiYjQyMzBiZTYiLCJpZCI6MjU4NTcsImlhdCI6MTU5ODUyMzYzMX0.qiwWAtBYE8ofh4tXGC185ALDTEK0sQggiyeh1EfQY5c';
+      // 默认设置
+      viewer = new Cesium.Viewer("cesiumContainer", {
+        animation: false,
+        baseLayerPicker: false,
+        fullscreenButton: false,
+        timeline: false,
+        sceneModePicker: false,
+        navigationHelpButton: false,
+        // terrainProvider: Cesium.createWorldTerrain({
+        //   requestVertexNormals: true,
+        //   requestWaterMask: true
+        // })
+      }
+      );
+      viewer.scene.globe.enableLighting = true;//根据时间光照变化
+      viewer._cesiumWidget._creditContainer.style.display = "none";//关闭版权
+
+    }
+
+    function addModel() {
+      // WMTS 服务
+      // 报400错误时，试着切换坐标系看看
+      //EPSG:900913为横轴墨卡托投影，为谷歌map采用
+      var url = 'http://localhost:8081/geoserver/gwc/service/wmts?layer=oyogis:china_hl&style=&tilematrixset=EPSG:900913&Service=WMTS&Request=GetTile&Version=1.0.0&Format=image%2Fpng&TileMatrix=EPSG:900913:{TileMatrix}&TileCol={TileCol}&TileRow={TileRow}';
+      var image = new Cesium.WebMapTileServiceImageryProvider({
+        url: url
+      });
+      viewer.imageryLayers.addImageryProvider(image);
+    }
+
+  </script>
+</body>
+
+</html>
