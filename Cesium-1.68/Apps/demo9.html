@@ -1,3 +1,11 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-09-01 11:22:02
+ * @LastEditTime: 2020-09-11 15:38:31
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \3d_GIS\Cesium-1.68\Apps\demo9.html
+-->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,7 +67,8 @@
 
     function addModel() {
       var tileset = viewer.scene.primitives.add(new Cesium.Cesium3DTileset({
-        url: "http://localhost:8081/chengdu/tileset.json"
+        // url: "http://localhost:8081/chengdu/tileset.json"
+        url: "http://localhost:8081/slope/layer.json"
       }));
       // 设置样式(根据建筑物高度划分)
       tileset.style = new Cesium.Cesium3DTileStyle({
